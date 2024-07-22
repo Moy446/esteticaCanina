@@ -1,15 +1,17 @@
-
 package estetica;
 
 import java.net.*;
 import java.io.*;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 public class ConexionCliente {
     private Socket socket;
     private DataInputStream bufferDeEntrada ;
-    private DataOutputStream bufferDeSalida ;
+    private ObjectOutputStream enviaObjeto;
     Scanner teclado = new Scanner(System.in);
     final String COMANDO_TERMINACION = "salir()";
     cliente panel;
@@ -28,23 +30,23 @@ public class ConexionCliente {
     }
         
     public void mostrarTexto(String s) {
-        panel.mostrar(s);
+        System.out.println(s);
     }
     
     public void abrirFlujos(){
         try{
             bufferDeEntrada = new DataInputStream(socket.getInputStream());
-            bufferDeSalida = new DataOutputStream(socket.getOutputStream());
-            bufferDeSalida.flush();
+            enviaObjeto = new ObjectOutputStream(socket.getOutputStream());
+            enviaObjeto.flush();
         }catch(IOException e){
             mostrarTexto("Error en la puerta de flujos");
         }
     }
     
-    public void enviar(String s){
+    public void enviar(Data data){
         try{
-            bufferDeSalida.writeUTF(s);
-            bufferDeSalida.flush();
+            enviaObjeto.writeObject(data);
+            enviaObjeto.flush();
         }catch(IOException e){
             mostrarTexto("IOException on enviar");
         }
@@ -53,7 +55,7 @@ public class ConexionCliente {
     public void cerrarConexion(){
         try {
             bufferDeEntrada.close();
-            bufferDeSalida.close();
+            enviaObjeto.close();
             socket.close();
             mostrarTexto("Conexion terminada");
         } catch (IOException e) {
@@ -80,24 +82,14 @@ public class ConexionCliente {
         }
     
     public void recibirDatos(){
-        String st = "";
+        String noti;
         try {
             do{
-                st = (String) bufferDeEntrada.readUTF();
-                mostrarTexto("\n [Servidor] => " + st);
-                System.out.println("\n [Usted] => ");
-            }while(!st.equals(COMANDO_TERMINACION));
-        } catch (IOException e) {
-        }
-    }
-    
-    public void escribirDatos(){
-        String entrada="";
-        while(true){
-            System.out.println("[Usted] => ");
-            entrada = teclado.nextLine();
-            if(entrada.length() > 0)
-                enviar(entrada);
+               noti = bufferDeEntrada.readUTF(); 
+                JOptionPane.showMessageDialog(null, noti);
+            }while (!noti.equals(COMANDO_TERMINACION));
+        } catch (IOException ex) {
+            Logger.getLogger(ConexionCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
