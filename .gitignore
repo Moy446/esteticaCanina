@@ -1,6 +1,4 @@
 /build/
-<<<<<<< HEAD
-=======
 
 ### Java ###
 # Compiled class file
@@ -27,6 +25,3 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
-
-# End of https://www.toptal.com/developers/gitignore/api/java
->>>>>>> dc0ccf877536b2d40325381647a58d96790e6a05

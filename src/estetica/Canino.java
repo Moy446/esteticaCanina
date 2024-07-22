@@ -4,7 +4,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Canino extends Thread{
+
     private String familia;
+
+    private int id;
+
     private String nombre;
     private String raza;
     private String edad;
@@ -41,18 +45,20 @@ public class Canino extends Thread{
     
     public void run(){
         while (!terminar){
+
             lavar();
             recortarUnas();
             cortar();
             limpiezaProfunda();
             quitarHongos();
-            humectar();
+            humectar();           
             
             if(secado && lavado &&corte&&unas&&limAreas&&humectacion&&hongos){
                 terminar = true;
             }
         }
         s.mostrar("El perro "+nombre+ " termino su servicio");
+
         s.aviso("El perro " +nombre+ " de la familia " +familia+ " termino su servicio");
     }
     
@@ -82,9 +88,11 @@ public class Canino extends Thread{
     public void recortarUnas(){
         if(e.areaDisponible("humectacion")&& !unas){
             try {
+
                 unas = e.unas(familia, nombre);
                 sleep(6000);
                 e.dejarUnas(familia, nombre);
+
             } catch (InterruptedException ex) {
                 Logger.getLogger(Canino.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -93,6 +101,7 @@ public class Canino extends Thread{
     public void humectar(){
          if(e.areaDisponible("humectacion")&& !humectacion){
             try {
+
                 humectacion = e.humectacion(familia, nombre);
                 sleep(3000);
                 e.dejarHumectacion(familia, nombre);
@@ -107,6 +116,7 @@ public class Canino extends Thread{
                 lavado = e.banar(familia, nombre);      
                 sleep(5000);
                 e.dejarBanar(familia, nombre);
+
             } catch (InterruptedException ex) {
                 Logger.getLogger(Canino.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -114,6 +124,7 @@ public class Canino extends Thread{
         }
     }
     public void secar(){
+
         while (!secado) { 
             if(e.areaDisponible("secado")&& !secado && lavado){
                 try {
@@ -123,7 +134,7 @@ public class Canino extends Thread{
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Canino.class.getName()).log(Level.SEVERE, null, ex);
                  }
-            }   
+            }  
         }
     }
     public void cortar(){
@@ -132,12 +143,10 @@ public class Canino extends Thread{
                 corte = e.recortes(familia, nombre);
                 sleep(6000);
                 e.dejarRecortes(familia, nombre);
+
             } catch (InterruptedException ex) {
                 Logger.getLogger(Canino.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
     
-    
-    
-}
