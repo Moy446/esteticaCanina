@@ -19,88 +19,88 @@ public class Estetica{
         this.s = s;
     }
     
-    public synchronized boolean banar (int idPerro, String nombre){
+    public synchronized boolean banar (String familia, String nombre){
         bañosActuales ++;
-        s.mostrar("El perro "+nombre+" con id "+idPerro+" se esta banando\n");
+        s.mostrar("El perro "+nombre+" de la familia "+familia+" se esta banando\n");
         return true;
     }
     
-    public synchronized boolean secar(int idPerro, String nombre){
+    public synchronized boolean secar(String familia, String nombre){
         secadorasActuales ++;
-        s.mostrar("El perro "+nombre+" con id "+idPerro+" se esta secando\n");
+        s.mostrar("El perro "+nombre+" de la familia "+familia+" se esta secando\n");
         return true;
     }
     
-    public synchronized boolean limProfunda (int idPerro, String nombre){
+    public synchronized boolean limProfunda (String familia, String nombre){
         limpiezaProfundaActual ++;
-        s.mostrar("El perro "+nombre+" con id "+idPerro+" se le esta haciendo su limpieza profunda\n");
+        s.mostrar("El perro "+nombre+" de la familia "+familia+" se le esta haciendo su limpieza profunda\n");
         return true;
     }
     
-    public synchronized boolean recortes (int idPerro, String nombre){        
+    public synchronized boolean recortes (String familia, String nombre){        
         recortesActuales ++;
-        s.mostrar("El perro "+nombre+" con id "+idPerro+" se le esta recortando su pelaje\n");
+        s.mostrar("El perro "+nombre+" de la familia "+familia+" se le esta recortando su pelaje\n");
         return true;
     }
     
-    public synchronized boolean hongos (int idPerro, String nombre){        
+    public synchronized boolean hongos (String familia, String nombre){        
         hongosActual ++;
-        s.mostrar("El perro "+nombre+" con id "+idPerro+" se le estan limpiando los hongos\n");
+        s.mostrar("El perro "+nombre+" de la familia "+familia+" se le estan limpiando los hongos\n");
         return true;
     }
     
-    public synchronized boolean humectacion (int idPerro, String nombre){
+    public synchronized boolean humectacion (String familia, String nombre){
         humetacionUnasActual ++;
-        s.mostrar("El perro "+nombre+" con id "+idPerro+" se le esta humectando la piel\n");
+        s.mostrar("El perro "+nombre+" de la familia "+familia+" se le esta humectando la piel\n");
         return true;
     }
     
-    public synchronized boolean unas(int idPerro, String nombre){
+    public synchronized boolean unas(String familia, String nombre){
         humetacionUnasActual++;
-        s.mostrar("El perro "+nombre+" con id "+idPerro+" se le esta cortando las unas\n");
+        s.mostrar("El perro "+nombre+" de la familia "+familia+" se le esta cortando las unas\n");
         return true;
     }
     
     
-    public synchronized void dejarBanar (int idPerro, String nombre){
+    public synchronized void dejarBanar (String familia, String nombre){
         bañosActuales --;
-        s.mostrar("El perro "+nombre+" con id "+idPerro+" se le dejo banar\n");
+        s.mostrar("El perro "+nombre+" de la familia "+familia+" se le dejo banar\n");
         notifyAll();
     }
     
-    public synchronized void dejarSecar(int idPerro, String nombre){
+    public synchronized void dejarSecar(String familia, String nombre){
         secadorasActuales --;
-        s.mostrar("El perro "+nombre+" con id "+idPerro+" se le dejo de secar\n");
+        s.mostrar("El perro "+nombre+" de la familia "+familia+" se le dejo de secar\n");
         notifyAll();
     }
     
-    public synchronized void dejarLimProfunda (int idPerro, String nombre){
+    public synchronized void dejarLimProfunda (String familia, String nombre){
         limpiezaProfundaActual --;
-        s.mostrar("El perro "+nombre+" con id "+idPerro+" se le dejo de hacer su limpieza profunda\n");
+        s.mostrar("El perro "+nombre+" de la familia "+familia+" se le dejo de hacer su limpieza profunda\n");
         notifyAll();
     }
     
-    public synchronized void dejarRecortes (int idPerro, String nombre){        
+    public synchronized void dejarRecortes (String familia, String nombre){        
         recortesActuales --;
-        s.mostrar("El perro "+nombre+" con id "+idPerro+" se le dejo de recortar su pelaje\n");
+        s.mostrar("El perro "+nombre+" de la familia "+familia+" se le dejo de recortar su pelaje\n");
         notifyAll();
     }
     
-    public synchronized void dejarHongos (int idPerro, String nombre){        
+    public synchronized void dejarHongos (String familia, String nombre){        
         hongosActual --;
-        s.mostrar("El perro "+nombre+" con id "+idPerro+" se le dejo de limpiar los hongos\n");
+        s.mostrar("El perro "+nombre+" de la familia "+familia+" se le dejo de limpiar los hongos\n");
         notifyAll();
     }
     
-    public synchronized void dejarHumectacion (int idPerro, String nombre){
+    public synchronized void dejarHumectacion (String familia, String nombre){
         humetacionUnasActual --;
-        s.mostrar("El perro "+nombre+" con id "+idPerro+" se le dejo de humectar la piel\n");
+        s.mostrar("El perro "+nombre+" de la familia "+familia+" se le dejo de humectar la piel\n");
         notifyAll();
     }
     
-    public synchronized void dejarUnas(int idPerro, String nombre){
+    public synchronized void dejarUnas(String familia, String nombre){
         humetacionUnasActual--;
-        s.mostrar("El perro "+nombre+" con id "+idPerro+" se le dejo de cortar las unas\n");
+        s.mostrar("El perro "+nombre+" de la familia "+familia+" se le dejo de cortar las unas\n");
         notifyAll();
     }
     
